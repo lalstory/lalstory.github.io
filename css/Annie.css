@@ -1077,6 +1077,7 @@ header .mask {
 header .h-body {
   position: relative;
   width: 100%;
+  top: 30%;
 }
 header .h-body .motto {
   font-size: 2rem;
