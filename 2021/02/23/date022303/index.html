@@ -291,7 +291,7 @@
 			</a>
 		
 		
-			<a href="/2020/09/03/date/" title="所有美好的相遇都是久别重逢" rel="next">
+			<a href="/2021/02/23/date022302/" title="《随记》二" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -342,6 +342,31 @@
 			
 					<li>
 						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/02/23/date022301/" title="《随记》一">
+								《随记》一			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2021				
+							</p>
+							<p class="relate-post-content">
+								昨晚我做了一个很长的梦
+梦里我们的爱情没有阻碍
+一切都顺风顺水
+
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/02/23/date022301/" title="《随记》一">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/post022301.jpg" alt="《随记》一"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
 							<a class="relate-post-title" href="/2021/02/23/date022302/" title="《随记》二">
 								《随记》二			
 							</a>
@@ -367,31 +392,6 @@
 							<a href="/2021/02/23/date022302/" title="《随记》二">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/post022302.jpg" alt="《随记》二"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/02/23/date022301/" title="《随记》一">
-								《随记》一			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 23日, 2021				
-							</p>
-							<p class="relate-post-content">
-								昨晚我做了一个很长的梦
-梦里我们的爱情没有阻碍
-一切都顺风顺水
-
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/02/23/date022301/" title="《随记》一">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/post022301.jpg" alt="《随记》一"/>
 							</a>
 						</div>
 					</li>												
@@ -430,11 +430,76 @@
 
 		
 
-			<!-- I don't know !!!-->
-			<div class="config-info">
-				Please check the parameter of <b>comment</b> in config.yml of hexo-theme-Annie!
-			</div>
-			
+			<!-- gitalk comment -->
+			<!-- show gitalk comment -->
+<div id="gitalk-container"></div>
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+
+	(function gitalkComment(){
+		//Thanks O-R
+		//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+		//去除尾部匹配正则数组的字符串  
+		//Remove redundant characters
+		String.prototype.trimEnd = function(regStr) {
+			let result = this;
+			if(regStr == undefined || regStr == null || regStr == "") {
+				return result;
+			}
+			let array = regStr.split(',');
+
+			if(array.length > 0) {
+
+				let c = array.shift(), 
+					str = this,
+					i = str.length,
+					rg = new RegExp(c),
+					matchArr = str.match(rg);
+
+				if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+					let matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+						.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+						.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+						.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+						.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+						.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+						.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+						.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+					matchStr = matchStr + '$';
+					result = str.replace(new RegExp(matchStr), "");
+				}
+
+				if(array.length > 0) {
+					return result.trimEnd(array.join())
+				} else {
+					return result;
+				}
+			}
+		};
+
+		//Create gitalk
+		let gitalk = new Gitalk({
+			clientID: '04e74a7ff5fe950926dc',
+			clientSecret: 'd1e32c6f5eb82f32a30b69f28ed2a737e49c2f78',
+			//id: window.location.pathname,
+			//id: decodeURI(window.location.pathname),
+			//id: (window.location.pathname).split("/").pop().substring(0, 49),
+			id: decodeURI( md5( location.href.trimEnd('#.*$,\\?.*$,index.html$') ) ),
+			repo: 'lalstory-comments',
+			owner: 'areuhungry',
+			admin: 'areuhungry',
+			distractionFreeMode: 'true',
+		})
+		gitalk.render('gitalk-container');		
+	})();
+</script>
+
 		
 		
 	
